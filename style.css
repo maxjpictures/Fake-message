@@ -207,12 +207,19 @@ button { cursor: pointer; border: 0; background: none; }
   display: grid;
   place-items: center;
   padding: 20px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.avatar-modal:not(.hidden) {
+  opacity: 1;
 }
 .avatar-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(10, 12, 24, 0.72);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .avatar-panel {
   position: relative;
@@ -224,6 +231,12 @@ button { cursor: pointer; border: 0; background: none; }
   border-radius: 28px;
   box-shadow: var(--shadow);
   overflow: hidden;
+  transform: scale(0.92);
+  transition: transform 0.25s ease;
+}
+
+.avatar-modal:not(.hidden) .avatar-panel {
+  transform: scale(1);
 }
 .avatar-toolbar {
   display: flex;
@@ -258,6 +271,8 @@ button { cursor: pointer; border: 0; background: none; }
   -webkit-user-drag: none;
   border-radius: 20px;
   box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+  will-change: transform;
+  transition: transform 0.1s ease;
 }
 .zoom-hint {
   margin: 0;
