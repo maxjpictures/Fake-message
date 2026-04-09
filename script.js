@@ -1,19 +1,15 @@
 const chatArea = document.getElementById('chatArea');
 const composerForm = document.getElementById('composerForm');
 const messageInput = document.getElementById('messageInput');
-const sendButton = document.getElementById('sendButton');
+const sendBtn = document.getElementById('sendBtn');
 const typingRow = document.getElementById('typingRow');
 const statusText = document.getElementById('statusText');
 
 const openAvatar = document.getElementById('openAvatar');
 const avatarModal = document.getElementById('avatarModal');
 const closeAvatar = document.getElementById('closeAvatar');
-const closeAvatarBtn = document.getElementById('closeAvatarBtn');
 const zoomImage = document.getElementById('zoomImage');
 const zoomStage = document.getElementById('zoomStage');
-const zoomInBtn = document.getElementById('zoomInBtn');
-const zoomOutBtn = document.getElementById('zoomOutBtn');
-const resetZoomBtn = document.getElementById('resetZoomBtn');
 
 const scriptedReplies = [
   'Привет. Я уже здесь ✨',
@@ -76,7 +72,9 @@ function scrollToBottom() {
 }
 
 function setComposerState() {
-  sendButton.disabled = !messageInput.value.trim();
+  if (sendBtn) {
+    sendBtn.disabled = !messageInput.value.trim();
+  }
 }
 
 function showTyping(show) {
@@ -126,7 +124,6 @@ function handleSubmit(event) {
 
 function applyTransform() {
   zoomImage.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) scale(${scale})`;
-  resetZoomBtn.textContent = `${Math.round(scale * 100)}%`;
 }
 
 function clampScale(value) {
@@ -238,12 +235,9 @@ zoomStage.addEventListener('pointerup', () => {
 
 openAvatar.addEventListener('click', openAvatarModal);
 closeAvatar.addEventListener('click', closeAvatarModal);
-closeAvatarBtn.addEventListener('click', closeAvatarModal);
-zoomInBtn.addEventListener('click', () => zoomBy(0.2));
-zoomOutBtn.addEventListener('click', () => zoomBy(-0.2));
-resetZoomBtn.addEventListener('click', resetZoom);
 composerForm.addEventListener('submit', handleSubmit);
 messageInput.addEventListener('input', setComposerState);
+
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !avatarModal.classList.contains('hidden')) {
     closeAvatarModal();
