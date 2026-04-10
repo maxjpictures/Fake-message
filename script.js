@@ -14,7 +14,7 @@ const zoomStage = document.getElementById('zoomStage');
 const scriptedReplies = ['Буду в 19:00'];
 const finalAutoMessage = 'Малышка, я у подъезда!';
 const initialMessages = [
-  { type: 'incoming', text: 'Как ты после вчерашнего, малышка?' }
+  { type: 'incoming', text: 'Как ты после вчерашнего, малышка? Сегодня всё в силе?' }
 ];
 
 let replyIndex = 0;
