@@ -21,7 +21,7 @@ const scriptedReplies = [
 
 const initialMessages = [
   { type: 'incoming', text: 'Привет! Это демо-чат в стиле iPhone.' },
-  { type: 'incoming', text: 'Напиши сообщение — я отвечу заранее подготовленной фразой.' }
+  { type: 'incoming', text: 'Малышка, я у подъезда!' }
 ];
 
 let replyIndex = 0;
