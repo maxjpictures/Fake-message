@@ -259,15 +259,15 @@ window.addEventListener('keydown', (event) => {
 renderTimestamp();
 setComposerState();
 
-// ⏳ Первое сообщение через 1 секунду
+// ⏳ Первое сообщение через 1,5 секунду
 setTimeout(() => {
   addMessage(initialMessages[0].type, initialMessages[0].text);
-}, 1000);
+}, 1500);
 
 renderTimestamp();
 setComposerState();
 
-// ⏳ всегда с задержкой 1 секунда
+// ⏳ всегда с задержкой 1,5 секунда
 setTimeout(() => {
   addMessage(initialMessages[0].type, initialMessages[0].text);
-}, 1000);
+}, 1500);
