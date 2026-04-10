@@ -13,7 +13,7 @@ const zoomStage = document.getElementById('zoomStage');
 
 const scriptedReplies = [
   'Малышка, я у подъезда!',
-  'Да, выглядит очень похоже на настоящий чат.',
+  'Малышка, я у подъезда!',
 ];
 
 const initialMessages = [
