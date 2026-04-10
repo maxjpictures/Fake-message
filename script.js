@@ -257,5 +257,9 @@ window.addEventListener('keydown', (event) => {
 });
 
 renderTimestamp();
-initialMessages.forEach((item) => addMessage(item.type, item.text));
 setComposerState();
+
+// ⏳ Первое сообщение через 2 секунды
+setTimeout(() => {
+  addMessage(initialMessages[0].type, initialMessages[0].text);
+}, 2000);
