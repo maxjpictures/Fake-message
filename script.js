@@ -12,16 +12,13 @@ const zoomImage = document.getElementById('zoomImage');
 const zoomStage = document.getElementById('zoomStage');
 
 const scriptedReplies = [
-  'Привет. Я уже здесь ✨',
+  'Малышка, я у подъезда!',
   'Да, выглядит очень похоже на настоящий чат.',
-  'Можно заменить мой аватар на любое твое фото.',
-  'На GitHub Pages это будет работать как обычный сайт.',
-  'Если хочешь, можно потом добавить еще ветки диалога.'
 ];
 
 const initialMessages = [
   { type: 'incoming', text: 'Как ты после вчерашнего малышка? Сегодня все в силе?' },
-  { type: 'incoming', text: 'Малышка, я у подъезда!' }
+  
 ];
 
 let replyIndex = 0;
