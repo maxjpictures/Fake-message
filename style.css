@@ -428,15 +428,3 @@ button {
   .message {
     max-width: 
 }
-html, body {
-  overflow-x: hidden !important;
-}
-
-.app-shell {
-  overflow-x: hidden !important;
-}
-
-.phone-frame {
-  width: 100vw !important;
-  max-width: 100vw !important;
-}
