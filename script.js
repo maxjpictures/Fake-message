@@ -37,11 +37,8 @@ let originX = 0;
 let originY = 0;
 let isDragging = false;
 
-function formatTime(date = new Date()) {
-  return new Intl.DateTimeFormat('ru-RU', {
-    hour: '2-digit',
-    minute: '2-digit'
-  }).format(date);
+function formatTime() {
+  return '12:47';
 }
 
 function renderTimestamp(label = 'Сегодня ' + formatTime()) {
