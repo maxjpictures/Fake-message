@@ -20,8 +20,7 @@ const scriptedReplies = [
 ];
 
 const initialMessages = [
-  { type: 'incoming', text: 'Привет! Это демо-чат в стиле iPhone.' },
-  { type: 'incoming', text: 'Напиши сообщение — я отвечу заранее подготовленной фразой.' }
+  { type: 'incoming', text: 'Как ты после вчерашнего, малышка?' },
 ];
 
 let replyIndex = 0;
