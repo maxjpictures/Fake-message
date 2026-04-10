@@ -264,10 +264,3 @@ setTimeout(() => {
   addMessage(initialMessages[0].type, initialMessages[0].text);
 }, 1500);
 
-renderTimestamp();
-setComposerState();
-
-// ⏳ всегда с задержкой 1,5 секунда
-setTimeout(() => {
-  addMessage(initialMessages[0].type, initialMessages[0].text);
-}, 1500);
