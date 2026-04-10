@@ -24,16 +24,17 @@ const initialMessages = [
 let replyIndex = 0;
 let typingTimer = null;
 let scale = 1;
+let startScale = 1;
 let translateX = 0;
 let translateY = 0;
-let lastTap = 0;
+let startTranslateX = 0;
+let startTranslateY = 0;
+let startX = 0;
+let startY = 0;
 let pinchStartDistance = 0;
-let pinchStartScale = 1;
-let dragStartX = 0;
-let dragStartY = 0;
-let originX = 0;
-let originY = 0;
 let isDragging = false;
+let isPinching = false;
+let lastTap = 0;
 
 function formatTime() {
   return '12:47';
@@ -122,7 +123,8 @@ function handleSubmit(event) {
 }
 
 function applyTransform() {
-  zoomImage.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) scale(${scale})`;
+  zoomImage.style.transform =
+    `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px)) scale(${scale})`;
 }
 
 function clampScale(value) {
