@@ -12,16 +12,20 @@ const zoomImage = document.getElementById('zoomImage');
 const zoomStage = document.getElementById('zoomStage');
 
 const scriptedReplies = [
-  'Буду в 19:00',
-  'Малышка, я у подъезда!'
+  'Буду в 19:00'
 ];
 
+const finalAutoMessage = 'Малышка, я у подъезда!';
+
 const initialMessages = [
-  { type: 'incoming', text: 'Как ты после вчерашнего, малышка?' },
+  { type: 'incoming', text: 'Как ты после вчерашнего, малышка? Всё в силе? }
 ];
 
 let replyIndex = 0;
 let typingTimer = null;
+let finalMessageTimer = null;
+let finalTypingTimer = null;
+
 let scale = 1;
 let translateX = 0;
 let translateY = 0;
@@ -34,14 +38,12 @@ let originX = 0;
 let originY = 0;
 let isDragging = false;
 
-function formatTime() {
-  return '12:47';
-}
+function renderTimestamp() {
+  if (document.querySelector('.time-stamp')) return;
 
-function renderTimestamp(label = 'Сегодня ' + formatTime()) {
   const stamp = document.createElement('div');
   stamp.className = 'time-stamp';
-  stamp.textContent = label;
+  stamp.textContent = 'Сегодня';
   chatArea.appendChild(stamp);
 }
 
@@ -85,12 +87,6 @@ function showTyping(show) {
 function getReplyForMessage(userText) {
   const normalized = userText.toLowerCase();
 
-  if (normalized.includes('фото') || normalized.includes('аватар')) {
-    return 'Нажми на мою аватарку сверху — она откроется во весь экран.';
-  }
-  if (normalized.includes('github') || normalized.includes('git')) {
-    return 'Да, этот проект готов для загрузки в репозиторий и публикации через GitHub Pages.';
-  }
   if (normalized.includes('привет')) {
     return 'Привет-привет 👋';
   }
@@ -98,6 +94,20 @@ function getReplyForMessage(userText) {
   const reply = scriptedReplies[replyIndex % scriptedReplies.length];
   replyIndex += 1;
   return reply;
+}
+
+function scheduleFinalMessage() {
+  clearTimeout(finalMessageTimer);
+  clearTimeout(finalTypingTimer);
+
+  finalMessageTimer = setTimeout(() => {
+    showTyping(true);
+
+    finalTypingTimer = setTimeout(() => {
+      showTyping(false);
+      addMessage('incoming', finalAutoMessage);
+    }, 1200);
+  }, 6000);
 }
 
 function handleSubmit(event) {
@@ -111,12 +121,18 @@ function handleSubmit(event) {
   showTyping(true);
 
   clearTimeout(typingTimer);
+  clearTimeout(finalMessageTimer);
+  clearTimeout(finalTypingTimer);
+
   const reply = getReplyForMessage(text);
   const delay = 900 + Math.min(text.length * 18, 1200);
 
   typingTimer = setTimeout(() => {
     showTyping(false);
-    setTimeout(() => addMessage('incoming', reply), 120);
+    setTimeout(() => {
+      addMessage('incoming', reply);
+      scheduleFinalMessage();
+    }, 120);
   }, delay);
 }
 
@@ -141,7 +157,6 @@ function zoomBy(step) {
 }
 
 function openAvatarModal() {
-  if (openAvatar) openAvatar.classList.add('fly-origin');
   avatarModal.classList.remove('hidden');
   avatarModal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
@@ -151,9 +166,6 @@ function openAvatarModal() {
   });
 
   resetZoom();
-  setTimeout(() => {
-    if (openAvatar) openAvatar.classList.remove('fly-origin');
-  }, 220);
 }
 
 function closeAvatarModal() {
@@ -256,5 +268,8 @@ window.addEventListener('keydown', (event) => {
 });
 
 renderTimestamp();
-initialMessages.forEach((item) => addMessage(item.type, item.text));
 setComposerState();
+
+setTimeout(() => {
+  addMessage(initialMessages[0].type, initialMessages[0].text);
+}, 1500);
