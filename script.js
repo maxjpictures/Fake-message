@@ -12,16 +12,12 @@ const zoomImage = document.getElementById('zoomImage');
 const zoomStage = document.getElementById('zoomStage');
 
 const scriptedReplies = [
-  'Привет. Я уже здесь ✨',
-  'Да, выглядит очень похоже на настоящий чат.',
-  'Можно заменить мой аватар на любое твое фото.',
-  'На GitHub Pages это будет работать как обычный сайт.',
-  'Если хочешь, можно потом добавить еще ветки диалога.'
+  'Буду в 19:00',
+  'Малышка, я у подъезда!'
 ];
 
 const initialMessages = [
-  { type: 'incoming', text: 'Привет! Это демо-чат в стиле iPhone.' },
-  { type: 'incoming', text: 'Напиши сообщение — я отвечу заранее подготовленной фразой.' }
+  { type: 'incoming', text: 'Как ты после вчерашнего, малышка?' },
 ];
 
 let replyIndex = 0;
