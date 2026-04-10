@@ -12,7 +12,7 @@ const zoomImage = document.getElementById('zoomImage');
 const zoomStage = document.getElementById('zoomStage');
 
 const scriptedReplies = [
-  'Малышка, я у подъезда!',
+  'Буду в 19:00!',
   'Малышка, я у подъезда!',
 ];
 
