@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#6f5cf6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Violet Chat" />
+  <title>Violet Chat</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="style.css?v=1" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="phone-frame">
+      <header class="topbar">
+        <button class="icon-button" aria-label="Назад">‹</button>
+
+        <button class="contact-button" id="openAvatar" aria-label="Открыть фото собеседника" type="button">
+          <img src="assets/avatar.jpg" alt="Аватар собеседника" class="avatar" />
+        </button>
+
+        <div class="contact-meta">
+          <div class="contact-name">Неизвестный</div>
+          <div class="contact-status" id="statusText">в сети</div>
+        </div>
+
+        <button class="icon-button" aria-label="Инфо" type="button">i</button>
+      </header>
+
+      <main class="chat-area" id="chatArea" aria-live="polite"></main>
+
+      <div class="typing-row hidden" id="typingRow" aria-hidden="true">
+        <div class="message incoming typing-bubble">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <form class="composer" id="composerForm" autocomplete="off">
+        <button class="plus-button" type="button" aria-label="Дополнительно">+</button>
+        <div class="input-wrap">
+          <input
+            type="text"
+            id="messageInput"
+            name="message"
+            placeholder="сообщение"
+            maxlength="400"
+            enterkeyhint="send"
+          />
+        </div>
+        <button class="send-button" id="sendBtn" type="submit" aria-label="Отправить">↑</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="avatar-modal hidden" id="avatarModal" aria-hidden="true">
+    <div class="avatar-backdrop" id="closeAvatar"></div>
+    <div class="avatar-panel">
+      <div class="zoom-stage" id="zoomStage">
+        <img src="assets/profile.jpg" alt="Полное фото собеседника" id="zoomImage" class="zoom-image" />
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=1"></script>
+</body>
+</html>
