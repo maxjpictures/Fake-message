@@ -234,6 +234,60 @@ window.addEventListener('keydown', (event) => {
     closeAvatarModal();
   }
 });
+.message-row {
+  display: flex;
+  margin: 6px 0;
+}
+
+.message-row.incoming {
+  justify-content: flex-start;
+}
+
+.message-row.outgoing {
+  justify-content: flex-end;
+}
+
+.message {
+  max-width: min(80%, 300px);
+  padding: 12px 15px;
+  border-radius: 22px;
+  font-size: 18px;
+  line-height: 1.32;
+  word-wrap: break-word;
+  box-shadow: 0 8px 24px rgba(34, 29, 76, 0.08);
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  animation: messageIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.message.incoming {
+  background: var(--incoming);
+  color: var(--text);
+  border-top-left-radius: 8px;
+  transform-origin: left bottom;
+}
+
+.message.outgoing {
+  background: var(--outgoing);
+  color: white;
+  border-top-right-radius: 8px;
+  transform-origin: right bottom;
+}
+
+@keyframes messageIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-1px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 
 renderTimestamp();
 initialMessages.forEach((item) => addMessage(item.type, item.text));
