@@ -20,7 +20,7 @@ const scriptedReplies = [
 ];
 
 const initialMessages = [
-  { type: 'incoming', text: 'Привет! Это демо-чат в стиле iPhone.' },
+  { type: 'incoming', text: 'Как ты после вчерашнего малышка? Сегодня все в силе?' },
   { type: 'incoming', text: 'Малышка, я у подъезда!' }
 ];
 
