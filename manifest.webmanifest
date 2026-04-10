@@ -1,0 +1,20 @@
+{
+  "name": "Violet Chat",
+  "short_name": "Violet Chat",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f2f2f7",
+  "theme_color": "#6f5cf6",
+  "icons": [
+    {
+      "src": "assets/avatar.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/avatar.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
