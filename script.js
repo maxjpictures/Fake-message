@@ -12,7 +12,8 @@ const zoomImage = document.getElementById('zoomImage');
 const zoomStage = document.getElementById('zoomStage');
 
 const scriptedReplies = [
-  'Буду в 19:00!'
+  'Буду в 19:00!',
+  'Малышка, я у подъезда!'
 ];
 
 const initialMessages = [
@@ -21,7 +22,6 @@ const initialMessages = [
 
 let replyIndex = 0;
 let typingTimer = null;
-let finalMessageTimer = null;
 
 let scale = 1;
 let startScale = 1;
@@ -34,6 +34,7 @@ let startY = 0;
 let pinchStartDistance = 0;
 let isDragging = false;
 let isPinching = false;
+let lastTap = 0;
 
 function renderTimestamp() {
   if (document.querySelector('.time-stamp')) return;
@@ -69,18 +70,26 @@ function scrollToBottom() {
 }
 
 function setComposerState() {
-  sendBtn.disabled = !messageInput.value.trim();
+  if (sendBtn) {
+    sendBtn.disabled = !messageInput.value.trim();
+  }
 }
 
 function showTyping(show) {
   typingRow.classList.toggle('hidden', !show);
-  statusText.textContent = show ? 'печатает…' : 'в сети';
+  typingRow.setAttribute('aria-hidden', show ? 'false' : 'true');
+  if (statusText) {
+    statusText.textContent = show ? 'печатает…' : 'в сети';
+  }
   scrollToBottom();
 }
 
 function getReplyForMessage(userText) {
   const normalized = userText.toLowerCase();
 
+  if (normalized.includes('фото') || normalized.includes('аватар')) {
+    return 'Нажми на мою аватарку сверху — она откроется во весь экран.';
+  }
   if (normalized.includes('привет')) {
     return 'Привет-привет 👋';
   }
@@ -101,24 +110,12 @@ function handleSubmit(event) {
   showTyping(true);
 
   clearTimeout(typingTimer);
-  clearTimeout(finalMessageTimer);
-
   const reply = getReplyForMessage(text);
   const delay = 900 + Math.min(text.length * 18, 1200);
 
   typingTimer = setTimeout(() => {
     showTyping(false);
-    addMessage('incoming', reply);
-
-    finalMessageTimer = setTimeout(() => {
-      showTyping(true);
-
-      setTimeout(() => {
-        showTyping(false);
-        addMessage('incoming', 'Малышка, я у подъезда!');
-      }, 1200);
-    }, 6000);
-
+    setTimeout(() => addMessage('incoming', reply), 120);
   }, delay);
 }
 
@@ -169,12 +166,14 @@ function resetZoom() {
 
 function openAvatarModal() {
   avatarModal.classList.remove('hidden');
+  avatarModal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
   resetZoom();
 }
 
 function closeAvatarModal() {
   avatarModal.classList.add('hidden');
+  avatarModal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
 
@@ -223,7 +222,6 @@ messageInput.addEventListener('input', setComposerState);
 renderTimestamp();
 setComposerState();
 
-// первое сообщение через 1.5 сек
 setTimeout(() => {
   addMessage(initialMessages[0].type, initialMessages[0].text);
 }, 1500);
