@@ -39,10 +39,10 @@ function formatTime() {
   return '12:47';
 }
 
-function renderTimestamp(label = 'Сегодня ' + formatTime()) {
+function renderTimestamp() {
   const stamp = document.createElement('div');
   stamp.className = 'time-stamp';
-  stamp.textContent = label;
+  stamp.textContent = 'Сегодня';
   chatArea.appendChild(stamp);
 }
 
