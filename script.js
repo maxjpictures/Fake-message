@@ -96,7 +96,7 @@ function scheduleFinalMessage() {
     finalTypingTimer = setTimeout(() => {
       showTyping(false);
       addMessage('incoming', finalAutoMessage);
-    }, 2000);
+    }, 3000);
   }, 12000);
 }
 
